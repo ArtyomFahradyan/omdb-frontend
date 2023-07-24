@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import { Grid, MenuItem, Button, Typography } from "@mui/material";
 import { useMoviesActions } from "@redux";
 import Spinner from "components/Spinner";
+import { API_URL } from "constants/common";
 import { Input, StyledSelect } from "./styles";
 
 function SearchBar() {
@@ -28,7 +29,7 @@ function SearchBar() {
     setMovies(null);
     setIsLoading(true);
     const res = await fetch(
-      `http://localhost:5001/movies?title=${title}&type=${type}&year=${year}`
+      `${API_URL}?title=${title}&type=${type}&year=${year}`
     );
     const data = await res.json();
     if (data.data?.Error?.includes("not found!")) {
@@ -37,8 +38,6 @@ function SearchBar() {
       setMovies(data.data);
     }
     setIsLoading(false);
-    // eslint-disable-next-line no-console
-    console.log(data);
   };
 
   const handleClear = () => {

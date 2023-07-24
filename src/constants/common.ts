@@ -1,1 +1,1 @@
-export const a = {};
+export const API_URL = "http://localhost:5001/movies";
